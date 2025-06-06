@@ -1,0 +1,32 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $targetDir = "../uploads/";
+    $name = htmlspecialchars($_POST['name']);
+    $email = htmlspecialchars($_POST['email']);
+    $phone = htmlspecialchars($_POST['phone']);
+    $subject = htmlspecialchars($_POST['subject']);
+    $message = htmlspecialchars($_POST['message']);
+    $file = $_FILES['resume'];
+
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+
+    $fileName = basename($file["name"]);
+    $targetFilePath = $targetDir . time() . "_" . $fileName;
+    $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+
+    if ($fileType != "pdf") {
+        echo "Only PDF files are allowed.";
+        exit;
+    }
+
+    if (move_uploaded_file($file["tmp_name"], $targetFilePath)) {
+        echo "Resume uploaded successfully.";
+    } else {
+        echo "Error uploading resume.";
+    }
+} else {
+    echo "Invalid access.";
+}
+?>

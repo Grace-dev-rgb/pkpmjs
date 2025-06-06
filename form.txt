@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Borang Hubungi</title>
+</head>
+<body>
+  <h2>Borang Hubungi Kami</h2>
+  <form action="hantar.php" method="post">
+    <label>Nama:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Emel:</label><br>
+    <input type="email" name="email" required><br><br>
+
+    <label>Subjek:</label><br>
+    <input type="text" name="subject" required><br><br>
+
+    <label>Mesej:</label><br>
+    <textarea name="message" required></textarea><br><br>
+
+    <button type="submit">Hantar</button>
+  </form>
+</body>
+</html>
